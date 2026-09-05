@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://golf-kaitori-deploy.pages.dev/sitemap.xml

@@ -21,6 +21,7 @@ const shippori = Shippori_Mincho({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  verification: { google: "ekgYOZQs5WjDqB9L8sv9F8A-H8wmqAIR61XLq54OFqs" },
   title: {
     default: `${SITE_NAME}｜${SITE_TAGLINE}`,
     template: `%s｜${SITE_NAME}`,

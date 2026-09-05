@@ -1,5 +1,5 @@
 // サイト共通定数 — ドメイン確定時はここ1箇所を変更すれば全ページに反映される
-export const SITE_URL = "https://golf-kaitori.pages.dev"; // 仮URL（ドメイン確定後に差し替え）
+export const SITE_URL = "https://golf-kaitori-deploy.pages.dev"; // 開発環境URL(独自ドメイン確定後に差し替え)
 export const SITE_NAME = "ゴルフ買取クラブ";
 export const SITE_TAGLINE = "実売データで選ぶゴルフクラブ・用品買取比較";
 export const OPERATOR = "株式会社MediaX";
