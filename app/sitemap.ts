@@ -7,6 +7,12 @@ export const dynamic = "force-static";
 const paths = [
   "/",
   "/souba/",
+  "/souba/taylormade/",
+  "/souba/callaway/",
+  "/souba/titleist/",
+  "/souba/ping/",
+  "/souba/xxio/",
+  "/souba/bridgestone/",
   "/club-guide/",
   "/hikaku/",
   "/guide/",

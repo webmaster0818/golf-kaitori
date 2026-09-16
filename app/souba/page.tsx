@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { SITE_URL, MAKERS } from "../lib/site";
+import { SITE_URL } from "../lib/site";
+import { SOUBA } from "../lib/souba";
 import Breadcrumbs from "../components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "実売相場データ — 計測方法と公開ポリシー",
   description:
-    "ゴルフクラブの相場を「参考買取価格」ではなく実際に売買が成立した価格で公開するための計測方法を解説。収集・クリーニング・レンジ公開の3ステップと、第1弾5メーカーの整備状況を正直にお伝えします。",
+    "ゴルフクラブの相場を「参考買取価格」ではなく実際に売買が成立した価格で公開するための計測方法を解説。収集・クリーニング・レンジ公開の3ステップと、第1弾6メーカー（テーラーメイド・キャロウェイ・タイトリスト・ピン・ブリヂストン・ゼクシオ）の実売データを出典・取得日つきで公開しています。",
   alternates: { canonical: `${SITE_URL}/souba/` },
 };
 
@@ -82,21 +83,23 @@ export default function SoubaPage() {
       {/* 第1弾5メーカー */}
       <section className="border-y border-line bg-cream-deep">
         <div className="mx-auto max-w-6xl px-5 py-14 md:py-16">
-          <h2 className="serif rule-green text-2xl text-ink">第1弾 — 対象5メーカーの整備状況</h2>
+          <h2 className="serif rule-green text-2xl text-ink">第1弾 — 6メーカーの実売相場データ（2026年9月16日取得）</h2>
           <p className="mt-5 max-w-3xl text-sm leading-relaxed text-ink-soft">
-            第1弾として、流通量が多く型番×年式でモデルを特定しやすい次の5メーカーからデータ整備を進めています。
+            流通量が多く型番×年式でモデルを特定しやすい6メーカーについて、ドライバー・アイアン・パター・フェアウェイウッド等のカテゴリ別に、落札件数・平均落札価格・単品最高値を公開しています。
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            {MAKERS.map((m) => (
-              <span key={m} className="club-tag">{m}</span>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {SOUBA.map((m) => (
+              <a key={m.slug} href={`/souba/${m.slug}/`} className="card-club p-6 block">
+                <p className="eyebrow mb-2">{m.en}</p>
+                <h3 className="serif text-lg text-ink">{m.name}の実売相場データ</h3>
+                <p className="mt-2 text-xs text-ink-soft">{m.rows.map((r) => r.category).join("・")}</p>
+              </a>
             ))}
           </div>
           <div className="notice-green mt-8 max-w-3xl p-6">
-            <p className="serif text-base text-ink">現在の状況: データ収集・検証中です</p>
+            <p className="serif text-base text-ink">掲載ルール</p>
             <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-              上記5メーカーの実売データは現在収集・検証中で、このページにはまだ金額を掲載していません。
-              裏付けの取れた数値のみを出典・取得日付きで順次公開し、<span className="font-bold text-ink">裏付けのない金額は掲載しません</span>。
-              「準備中でも何か数字を載せる」ことはしない方針です。公開の考え方の詳細は
+              件数・平均はオークファンの集計値、最高値はYahoo!オークション落札一覧を落札価格順に確認した「クラブ1本（アイアンは1セット）」の最上位です。まとめ売り・フルセット・ヘッド単体・カバー単体・フリマ出品・高反発加工品は除外し、ツアー支給品など一般流通と価格帯が異なるものは注記しています。裏付けのない金額は掲載しません。公開の考え方の詳細は
               <a href="/verification-policy/" className="font-bold text-green underline">情報の調査・検証ポリシー</a>
               をご覧ください。
             </p>
@@ -123,7 +126,7 @@ export default function SoubaPage() {
         <div className="notice-leather mt-8 max-w-3xl p-6">
           <p className="text-sm leading-relaxed text-ink-soft">
             <span className="font-bold text-ink">ご注意: </span>
-            今後公開する実売レンジは、取得日時点の過去の取引実績であり、将来の買取額や売却額を保証するものではありません。クラブの状態・付属品・時期によって実際の金額は変わります。
+            公開している実売レンジは、取得日時点の過去の取引実績であり、将来の買取額や売却額を保証するものではありません。クラブの状態・付属品・時期によって実際の金額は変わります。
           </p>
         </div>
       </section>
@@ -133,7 +136,7 @@ export default function SoubaPage() {
         <div className="card-club p-6 md:p-8">
           <h2 className="serif text-xl text-ink">売る前に読んでおくページ</h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft">
-            相場データの公開までの間も、査定で見られるポイントや売り先の選び方を知っておくことで、査定額の妥当性を判断しやすくなります。
+            相場データとあわせて、査定で見られるポイントや売り先の選び方を知っておくことで、査定額の妥当性を判断しやすくなります。
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <a href="/club-guide/" className="btn-green text-sm">ゴルフクラブの売り方ガイド</a>
