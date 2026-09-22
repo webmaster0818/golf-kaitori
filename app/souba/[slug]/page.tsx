@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const b = SOUBA.find((x) => x.slug === slug);
   if (!b) return {};
   return {
-    title: `${b.name}の実売相場データ｜買取価格の目安【2026年9月】`,
+    title: `${b.name}の実売相場データ｜型番別の買取価格の目安【2026年9月】`,
     description: `${b.name}のゴルフクラブがオークションで実際に売買された価格を集計。${b.rows.map((r) => r.category).join("・")}の落札件数・平均落札価格・単品最高値を出典と取得日つきで公開し、買取査定前の相場の物差しを提供します。`,
     alternates: { canonical: `${SITE_URL}/souba/${b.slug}/` },
   };
@@ -91,6 +91,52 @@ export default async function SoubaMakerPage({ params }: { params: Promise<{ slu
         </div>
         {b.notes && <p className="mt-4 text-xs text-muted">補足: {b.notes}</p>}
       </section>
+
+      {b.models && b.models.length > 0 && (
+        <section className="border-t border-line bg-cream-deep" id="models">
+          <div className="mx-auto max-w-6xl px-5 py-12 md:py-14">
+            <h2 className="serif rule-green text-2xl text-ink">型番・モデル別の実売データ — 買取価格の目安</h2>
+            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-ink-soft mb-6">
+              {b.modelsIntro ?? "検索需要の多い型番・モデルについて、カテゴリ集計と同じ方法（オークファンの集計値＋Yahoo!オークション落札一覧の単品最高値）で個別に集計しました。"}
+              取得日はいずれも{b.modelsFetchedAt ?? b.fetchedAt}です。
+            </p>
+            <div className="overflow-x-auto">
+              <table className="table-spec min-w-[760px]">
+                <thead>
+                  <tr>
+                    <th>型番・モデル</th>
+                    <th>落札件数（集計期間）</th>
+                    <th>平均落札価格</th>
+                    <th>最高落札価格（単品）</th>
+                    <th>出典</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {b.models.map((r) => (
+                    <tr key={r.category}>
+                      <td className="font-bold text-ink">{r.category}</td>
+                      <td>{r.count}</td>
+                      <td>{r.avg}</td>
+                      <td>
+                        {r.max}
+                        <span className="block text-xs text-muted mt-1">{r.maxNote}</span>
+                      </td>
+                      <td className="whitespace-nowrap text-xs">
+                        <a href={r.aucfanUrl} target="_blank" rel="noopener noreferrer" className="font-bold text-green underline">aucfan</a>
+                        {" / "}
+                        <a href={r.yahooUrl} target="_blank" rel="noopener noreferrer" className="font-bold text-green underline">ヤフオク</a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-4 text-xs text-muted">
+              ※型番のキーワード集計には、ヘッド単体・シャフト・カバーなどの周辺出品も含まれます。平均値は「状態の良い本体の相場」ではなく、最高値は限定仕様・付属品・状態の特殊例を含みます。買取査定額は実売より低くなるのが一般的です。
+            </p>
+          </div>
+        </section>
+      )}
 
       <section className="border-y border-line bg-cream-deep">
         <div className="mx-auto max-w-6xl px-5 py-12 md:py-14">
