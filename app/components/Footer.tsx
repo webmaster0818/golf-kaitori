@@ -9,6 +9,10 @@ export default function Footer() {
         { href: "/club-guide/", label: "ゴルフクラブの売り方" },
         { href: "/hikaku/", label: "買取業者の選び方（3つの売り先）" },
         { href: "/guide/", label: "はじめての買取ガイド" },
+        { href: "/reviews/", label: "買取業者の検証レビュー" },
+        { href: "/guide/damaged-club/", label: "傷あり・シャフト折れのクラブ" },
+        { href: "/guide/old-clubs/", label: "古いクラブを売る" },
+        { href: "/guide/set-bag-ball/", label: "セット・バッグ・ボール" },
       ],
     },
     {

@@ -53,6 +53,7 @@ h1, h2, h3, .serif {
   font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
   padding: 0.25rem 0.75rem; border-radius: 999px;
 }
+.club-tag--muted { border-color: #8a8f8a; color: #5c625c; background: #f0f0ec; }
 
 /* --- Header / Footer --- */
 .site-header {

@@ -208,6 +208,32 @@ export default function GuidePage() {
         </div>
       </section>
 
+      {/* 困ったときのガイド */}
+      <section className="border-y border-line bg-cream-deep">
+        <div className="mx-auto max-w-6xl px-5 py-12 md:py-14">
+          <h2 className="serif rule-green text-2xl text-ink">売れるか迷うクラブ・用品のガイド</h2>
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-ink-soft">
+            傷や折れ、古い年式、パーツだけ、セットやバッグ——通常のクラブと扱いが分かれるケースについて、買取業者10社の公式サイトの条件を照合して整理しています。
+          </p>
+          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              { href: "/guide/damaged-club/", tag: "DAMAGED", title: "傷あり・シャフト折れ・凹み", body: "減額で済むダメージと、買取不可になるダメージの線引き。" },
+              { href: "/guide/old-clubs/", tag: "OLD", title: "10年以上前の古いクラブ", body: "業者が公式に示す年式の目安と、古いモデルを受ける業者。" },
+              { href: "/guide/head-lefty-ladies/", tag: "PARTS", title: "ヘッド単体・レフティ・レディース", body: "パーツ・左用・レディースの公式記載の有無と実売の傾向。" },
+              { href: "/guide/set-bag-ball/", tag: "SETS", title: "セット・キャディバッグ・ボール", body: "番手条件、バッグの同送、対象外になりやすい小物。" },
+              { href: "/guide/find-model/", tag: "IDENTIFY", title: "モデル名・年式の調べ方", body: "刻印・シャフトバンドの見方と、メーカー別の世代の目安。" },
+              { href: "/reviews/", tag: "REVIEWS", title: "買取業者の検証レビュー（10社）", body: "買取方法・費用・取扱・古物商許可を公式サイトで一次確認。" },
+            ].map((g) => (
+              <a key={g.href} href={g.href} className="card-club p-6 block">
+                <span className="club-tag mb-3">{g.tag}</span>
+                <h3 className="serif text-lg text-ink">{g.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{g.body}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 次のページへ */}
       <section className="mx-auto max-w-6xl px-5 py-14 pb-16">
         <h2 className="serif rule-green text-2xl text-ink">次のステップ</h2>
