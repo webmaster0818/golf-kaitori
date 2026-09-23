@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { SITE_URL, MAKERS } from "../lib/site";
 import Breadcrumbs from "../components/Breadcrumbs";
+import RelatedLinks from "../components/RelatedLinks";
+import { GUIDE_LINKS, HUB_LINKS } from "../lib/links";
 
 export const metadata: Metadata = {
   title: "ゴルフクラブの売り方ガイド — 査定ポイントと売り時",
@@ -207,6 +209,7 @@ export default function ClubGuidePage() {
           </div>
         </div>
       </section>
+      <RelatedLinks title="あわせて確認したいページ" items={[GUIDE_LINKS[4], GUIDE_LINKS[0], GUIDE_LINKS[3], HUB_LINKS.souba, HUB_LINKS.reviews]} />
     </main>
   );
 }

@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import { SITE_URL } from "../lib/site";
 import Breadcrumbs from "./Breadcrumbs";
+import RelatedLinks from "./RelatedLinks";
+import { GUIDE_LINKS, HUB_LINKS } from "../lib/links";
 
 export type Faq = { q: string; a: string };
 
@@ -76,6 +78,10 @@ export default function GuideShell({
           ))}
         </div>
       </section>
+      <RelatedLinks
+        title="売れるか迷うクラブ・用品の他のガイド"
+        items={[...GUIDE_LINKS.filter((g) => g.href !== path), HUB_LINKS.reviews, HUB_LINKS.souba]}
+      />
     </main>
   );
 }

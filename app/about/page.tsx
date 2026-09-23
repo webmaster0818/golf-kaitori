@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Breadcrumbs from "../components/Breadcrumbs";
+import { BreadcrumbJsonLd } from "../components/JsonLd";
 import { SITE_URL, SITE_NAME, OPERATOR } from "../lib/site";
 
 export const metadata: Metadata = {
@@ -12,6 +13,7 @@ export default function AboutPage() {
   return (
     <main className="mx-auto max-w-3xl px-5 py-10 md:py-14">
       <Breadcrumbs items={[{ label: "運営者情報" }]} />
+      <BreadcrumbJsonLd items={[{ label: "運営者情報", href: "/about/" }]} />
 
       <p className="eyebrow mt-6 mb-4">ABOUT</p>
       <h1 className="serif rule-green text-2xl md:text-3xl text-ink mb-8">運営者情報</h1>

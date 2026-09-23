@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { SITE_URL } from "../../lib/site";
 import { REVIEWS, SILO_LABELS, type SiloKey } from "../../lib/reviews";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import RelatedLinks from "../../components/RelatedLinks";
+import { GUIDE_LINKS, REVIEW_LINKS, HUB_LINKS } from "../../lib/links";
 
 export function generateStaticParams() {
   return REVIEWS.map((r) => ({ slug: r.slug }));
@@ -231,6 +233,22 @@ export default async function ReviewDetailPage({
           </div>
         </div>
       </section>
+
+      <RelatedLinks
+        title="他の買取業者の検証・関連ガイド"
+        items={[
+          ...(() => {
+            // 自社を除いた他社を、自社の次から6社(循環)=全社が均等に被リンクを得る
+            const i = REVIEW_LINKS.findIndex((l) => l.href === `/reviews/${r.slug}/`);
+            const others = [...REVIEW_LINKS.slice(i + 1), ...REVIEW_LINKS.slice(0, i)];
+            return others.slice(0, 6);
+          })(),
+          HUB_LINKS.souba,
+          GUIDE_LINKS[0],
+          GUIDE_LINKS[1],
+          GUIDE_LINKS[3],
+        ]}
+      />
     </main>
   );
 }

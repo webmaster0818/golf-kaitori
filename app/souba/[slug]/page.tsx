@@ -3,6 +3,15 @@ import { notFound } from "next/navigation";
 import { SITE_URL } from "../../lib/site";
 import { SOUBA } from "../../lib/souba";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import RelatedLinks from "../../components/RelatedLinks";
+import { JsonLd } from "../../components/JsonLd";
+
+// "2026年9月22日" → "2026-09-22"(schema.org用)
+const toIso = (ja: string) => {
+  const m = ja.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+  return m ? `${m[1]}-${m[2].padStart(2, "0")}-${m[3].padStart(2, "0")}` : ja;
+};
+import { GUIDE_LINKS, SOUBA_LINKS, HUB_LINKS } from "../../lib/links";
 
 export function generateStaticParams() {
   return SOUBA.map((b) => ({ slug: b.slug }));
@@ -37,6 +46,21 @@ export default async function SoubaMakerPage({ params }: { params: Promise<{ slu
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Dataset",
+          name: `${b.name}のゴルフクラブ実売相場データ`,
+          description: `${b.name}の中古ゴルフクラブがオークションで実際に売買された価格の集計（カテゴリ別${b.rows.length}件${b.models ? `・型番別${b.models.length}件` : ""}）。落札件数・平均落札価格・単品最高値を出典つきで掲載。`,
+          url: `${SITE_URL}/souba/${b.slug}/`,
+          inLanguage: "ja",
+          creator: { "@id": `${SITE_URL}/#organization` },
+          dateModified: toIso(b.modelsFetchedAt ?? b.fetchedAt),
+          isBasedOn: "https://aucfan.com/",
+          license: `${SITE_URL}/terms/`,
+          keywords: [b.name, "ゴルフクラブ", "買取相場", "実売相場"].join(","),
+        }}
+      />
 
       <section className="border-b border-line bg-cream">
         <div className="mx-auto max-w-6xl px-5 pt-8 pb-12 md:pb-16">
@@ -167,6 +191,16 @@ export default async function SoubaMakerPage({ params }: { params: Promise<{ slu
           <a href="/souba/" className="btn-outline text-sm">相場データ一覧へ戻る</a>
         </div>
       </section>
+
+      <RelatedLinks
+        title="あわせて確認したいページ"
+        items={[
+          ...SOUBA_LINKS.filter((l) => l.href !== `/souba/${b.slug}/`),
+          HUB_LINKS.reviews,
+          ...GUIDE_LINKS.slice(0, 3),
+          GUIDE_LINKS[4],
+        ]}
+      />
     </main>
   );
 }

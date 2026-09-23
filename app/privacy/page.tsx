@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Breadcrumbs from "../components/Breadcrumbs";
+import { BreadcrumbJsonLd } from "../components/JsonLd";
 import { SITE_URL, SITE_NAME, OPERATOR } from "../lib/site";
 
 export const metadata: Metadata = {
@@ -12,6 +13,7 @@ export default function PrivacyPage() {
   return (
     <main className="mx-auto max-w-3xl px-5 py-10 md:py-14">
       <Breadcrumbs items={[{ label: "プライバシーポリシー" }]} />
+      <BreadcrumbJsonLd items={[{ label: "プライバシーポリシー", href: "/privacy/" }]} />
 
       <p className="eyebrow mt-6 mb-4">PRIVACY POLICY</p>
       <h1 className="serif rule-green text-2xl md:text-3xl text-ink mb-8">プライバシーポリシー</h1>

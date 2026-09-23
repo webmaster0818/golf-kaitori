@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { SITE_URL } from "../lib/site";
 import Breadcrumbs from "../components/Breadcrumbs";
+import RelatedLinks from "../components/RelatedLinks";
+import { GUIDE_LINKS, HUB_LINKS } from "../lib/links";
 
 export const metadata: Metadata = {
   title: "買取業者の選び方 — 3つの売り先の違い",
@@ -168,6 +170,7 @@ export default function HikakuPage() {
           </div>
         </div>
       </section>
+      <RelatedLinks title="あわせて確認したいページ" items={[HUB_LINKS.reviews, HUB_LINKS.souba, ...GUIDE_LINKS.slice(0, 2), GUIDE_LINKS[3]]} />
     </main>
   );
 }

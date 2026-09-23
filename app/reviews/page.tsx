@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SITE_URL } from "../lib/site";
 import { REVIEWS, SILO_LABELS, type SiloKey } from "../lib/reviews";
 import Breadcrumbs from "../components/Breadcrumbs";
+import { JsonLd } from "../components/JsonLd";
 
 export const metadata: Metadata = {
   title: "ゴルフクラブ買取業者を公式情報で検証｜専門店・総合店の買取方法・費用・取扱一覧",
@@ -43,6 +44,15 @@ export default function ReviewsPage() {
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "ゴルフクラブ買取業者の検証レビュー",
+          numberOfItems: REVIEWS.length,
+          itemListElement: REVIEWS.map((r, i) => ({ "@type": "ListItem", position: i + 1, name: r.name, url: `${SITE_URL}/reviews/${r.slug}/` })),
+        }}
+      />
 
       <section className="border-b border-line bg-cream">
         <div className="mx-auto max-w-6xl px-5 pt-8 pb-12 md:pb-16">

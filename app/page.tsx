@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import { SITE_URL, SITE_NAME, SITE_TAGLINE, MAKERS } from "./lib/site";
+import { SITE_URL, SITE_NAME, SITE_TAGLINE } from "./lib/site";
+import { SOUBA } from "./lib/souba";
+import { REVIEWS } from "./lib/reviews";
+import { GUIDE_LINKS } from "./lib/links";
 
 export const metadata: Metadata = {
   title: `${SITE_NAME}｜${SITE_TAGLINE}`,
@@ -72,17 +75,54 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 実売DB第1弾 */}
+      {/* 実売相場DB */}
       <section className="mx-auto max-w-6xl px-5 pb-14">
-        <div className="notice-green p-6 md:p-8">
-          <p className="serif text-lg text-ink">実売相場DB 第1弾（整備中）</p>
-          <p className="mt-3 text-sm leading-relaxed text-ink-soft max-w-3xl">
-            第1弾として{MAKERS.join("・")}の5メーカーについて、実際の売買成立価格にもとづく相場データを整備しています。
-            裏付けの取れた数値のみを出典・取得日付きで公開し、裏付けのない金額は掲載しません。
+        <h2 className="serif rule-green text-2xl text-ink">メーカー別の実売相場データ（{SOUBA.length}メーカー・型番別{SOUBA.reduce((n, m) => n + (m.models?.length ?? 0), 0)}件）</h2>
+        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-ink-soft">
+          オークションで実際に売買が成立した価格を、カテゴリ別・型番別に落札件数・平均・単品最高値で公開しています。裏付けのない「参考買取価格」は掲載しません。
+        </p>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {SOUBA.map((m) => (
+            <a key={m.slug} href={`/souba/${m.slug}/`} className="card-club p-5 block">
+              <span className="club-tag mb-3">{m.en}</span>
+              <h3 className="serif text-lg text-ink">{m.name}の実売相場データ</h3>
+              <p className="mt-2 text-xs text-ink-soft">
+                カテゴリ{m.rows.length}件{m.models ? `・型番${m.models.length}件` : ""}（取得日 {m.modelsFetchedAt ?? m.fetchedAt}）
+              </p>
+            </a>
+          ))}
+        </div>
+        <a href="/souba/" className="mt-5 inline-block text-sm font-bold text-green">実売相場データの計測方法を見る →</a>
+      </section>
+
+      {/* 業者レビュー */}
+      <section className="border-y border-line bg-cream-deep">
+        <div className="mx-auto max-w-6xl px-5 py-14">
+          <h2 className="serif rule-green text-2xl text-ink">買取業者の検証レビュー（{REVIEWS.length}社）</h2>
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-ink-soft">
+            専門店・総合店の買取方法・費用・取扱区分・古物商許可を各社の公式サイトで一次確認し、確認できなかった項目も正直に記載しています。架空の口コミは掲載しません。
           </p>
-          <a href="/souba/" className="mt-4 inline-block text-sm font-bold text-green">
-            データの計測方法を見る →
-          </a>
+          <div className="mt-6 flex flex-wrap gap-2">
+            {REVIEWS.map((r) => (
+              <a key={r.slug} href={`/reviews/${r.slug}/`} className="club-tag hover:bg-green hover:text-white transition-colors">
+                {r.name}
+              </a>
+            ))}
+          </div>
+          <a href="/reviews/" className="mt-5 inline-block text-sm font-bold text-green">区分別の明記状況を早見表で見る →</a>
+        </div>
+      </section>
+
+      {/* 売れるか迷うガイド */}
+      <section className="mx-auto max-w-6xl px-5 py-14">
+        <h2 className="serif rule-green text-2xl text-ink">売れるか迷うクラブ・用品のガイド</h2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {GUIDE_LINKS.map((g) => (
+            <a key={g.href} href={g.href} className="card-club p-5 block">
+              <h3 className="font-bold text-ink">{g.label}</h3>
+              <p className="mt-2 text-xs text-ink-soft">{g.note}</p>
+            </a>
+          ))}
         </div>
       </section>
 

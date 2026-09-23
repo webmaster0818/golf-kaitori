@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Sans_JP, Shippori_Mincho } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
+import { SiteJsonLd } from "./components/JsonLd";
 import Footer from "./components/Footer";
 import { SITE_URL, SITE_NAME, SITE_TAGLINE } from "./lib/site";
 
@@ -38,6 +39,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${notoSansJP.variable} ${shippori.variable} antialiased`}>
+        <SiteJsonLd />
         <Header />
         <p className="bg-cream-deep border-b border-line text-center text-[11px] text-muted py-1 px-4">
           本サイトはプロモーション（PR）を含みます。
