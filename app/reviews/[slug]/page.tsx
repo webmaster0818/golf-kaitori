@@ -20,8 +20,8 @@ export async function generateMetadata({
   if (!r) return {};
   const ym = r.confirmedAt.replace(/(\d+年\d+月).*/, "$1");
   return {
-    title: `${r.name}のゴルフクラブ買取を公式情報で検証｜買取方法・費用・取扱【${ym}確認】`,
-    description: `${r.name}（${r.company}）がゴルフクラブ・セット・ウェアや小物を買取対象としているか、買取方法・費用・古物商許可を公式サイトで一次確認して整理。確認できなかった項目も正直に記載します。架空の口コミは掲載しません。`,
+    title: r.seoTitle ? `${r.seoTitle}【${ym}確認】` : `${r.name}のゴルフクラブ買取を公式情報で検証｜評判の前に確認したい買取方法・費用・取扱【${ym}確認】`,
+    description: r.seoDesc ?? `${r.name}（${r.company}）がゴルフクラブ・セット・ウェアや小物を買取対象としているか、買取方法・費用・古物商許可を公式サイトで一次確認して整理。確認できなかった項目も正直に記載します。架空の口コミは掲載しません。`,
     alternates: { canonical: `${SITE_URL}/reviews/${r.slug}/` },
   };
 }

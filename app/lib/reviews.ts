@@ -21,6 +21,8 @@ export type Review = {
   checkBefore: string; // 査定前に確認しておきたい点(事実ベース)
   confirmedAt: string; // 確認日
   affiliateUrl: string | null; // 計測リンク(受領まで null = CTA非描画)
+  seoTitle?: string; // 検索語に合わせた title（本文にある事実のみ。無ければテンプレ）
+  seoDesc?: string;
 };
 
 export const SILO_LABELS: Record<SiloKey, string> = {
@@ -157,6 +159,8 @@ export const REVIEWS: Review[] = [
     checkBefore: "査定総額が1万円を超える場合は本人確認が必要です。現金での受け取りを希望する場合は、事前に現金買取対応店舗かどうかを確認してください。宅配・出張の受付は公式に確認できません。",
     confirmedAt: AT,
     affiliateUrl: null,
+    seoTitle: "二木ゴルフの買取・下取りを公式情報で検証｜現金買取は9店舗・ポイント買取・持ち込みの流れ",
+    seoDesc: "二木ゴルフの買取は、店舗へ持ち込んだクラブを新品購入時の下取りに充てるか、二木ゴルフポイント（1ポイント=1円）で受け取る方式。現金買取は藤沢・木更津など9店舗に限られます。査定総額1万円超は本人確認が必要。公式サイトで一次確認した条件と、確認できなかった項目を正直に整理します。",
   },
   {
     slug: "tsuruya",
@@ -178,6 +182,8 @@ export const REVIEWS: Review[] = [
     checkBefore: "下取りのキャンペーン条件（通常下取り価格からのUP等）は時期により変わります。ECのドライバー事前査定フォームは目安のため、最終的な金額は店舗査定で決まります。",
     confirmedAt: AT,
     affiliateUrl: null,
+    seoTitle: "つるやゴルフの買取・下取りを公式情報で検証｜店舗持ち込み・ドライバー事前査定・評判の前に確認すること",
+    seoDesc: "つるやゴルフは公式に「買取」ではなく「下取り」として案内しており、新品購入時に店舗へ持ち込む形が基本です。ECのドライバー事前査定フォーム（11ブランド・状態ランクA/B/C）や中古館の有無、単独買取の確認ポイントを公式サイトで一次確認して整理します。架空の口コミは掲載しません。",
   },
   {
     slug: "golf-ace",
