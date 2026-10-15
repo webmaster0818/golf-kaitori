@@ -100,6 +100,7 @@ export const REVIEWS: Review[] = [
   {
     slug: "golf5",
     name: "ゴルフ5（アルペン）",
+    seoTitle: "ゴルフ5・アルペンのゴルフクラブ買取を公式情報で検証｜店頭買取・買取不可になる条件・評判の前に確認すること",
     company: "株式会社アルペン",
     license: "愛知県公安委員会 第542549905500号（㈱アルペン）",
     methods: ["店頭"],
@@ -121,6 +122,7 @@ export const REVIEWS: Review[] = [
   {
     slug: "golf-kids",
     name: "ゴルフキッズ",
+    seoTitle: "ゴルフキッズの買取を公式情報で検証｜店頭でその場で現金・壊れたクラブは買取不可・評判の前に確認すること",
     company: "株式会社GKファクトリー",
     license: "埼玉県公安委員会許可番号 第431270028032号",
     methods: ["店頭"],
