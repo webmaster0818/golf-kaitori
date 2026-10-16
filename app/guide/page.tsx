@@ -71,7 +71,7 @@ const flow = [
   {
     step: "04",
     title: "入金",
-    body: "承諾後、指定した方法で支払いを受け取ります。店頭ではその場での支払い、宅配・出張では振込が用いられるのが一般的です。入金時期の目安は承諾前に確認しておきましょう。",
+    body: "承諾後、指定した方法で支払いを受け取ります。店頭ではその場での支払い、宅配・出張では振込が用いられるのが一般的です。入金時期の目安は承諾前に確認しておいてください。",
   },
 ];
 
@@ -179,13 +179,13 @@ export default function GuidePage() {
           <div className="card-club p-6">
             <h3 className="serif text-lg text-ink">キャンセル規定を事前に確認する</h3>
             <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-              査定後に断った場合の返送料や手数料の扱いは業者ごとに異なります。申込前にキャンセル時の条件を確認しておくことで、「断りにくいから売る」という状況を避けられます。特に宅配買取では、返送時の費用負担を必ず確認しましょう。
+              査定後に断った場合の返送料や手数料の扱いは業者ごとに異なります。申込前にキャンセル時の条件を確認しておくことで、「断りにくいから売る」という状況を避けられます。特に宅配買取では、返送時の費用負担を必ずご確認ください。
             </p>
           </div>
           <div className="card-club p-6">
             <h3 className="serif text-lg text-ink">査定額の根拠を確認する</h3>
             <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-              提示された金額に対して「どの点が評価され、どの点で減額されたのか」を質問して構いません。根拠の説明があいまいなまま即決を迫られたら、返事を保留して他社と比較しましょう。判断の物差しとして
+              提示された金額に対して「どの点が評価され、どの点で減額されたのか」を質問して構いません。根拠の説明があいまいなまま即決を迫られたら、返事を保留して他社と比較することをおすすめします。判断の物差しとして
               <a href="/souba/" className="font-bold text-green underline">実売相場データ</a>
               の考え方も役立ちます。
             </p>
@@ -238,7 +238,7 @@ export default function GuidePage() {
       <section className="mx-auto max-w-6xl px-5 py-14 pb-16">
         <h2 className="serif rule-green text-2xl text-ink">次のステップ</h2>
         <p className="mt-4 max-w-3xl text-sm leading-relaxed text-ink-soft">
-          {SITE_NAME}では、査定で見られるポイントや売り先3タイプの違いを個別ページで解説しています。流れがつかめたら、準備と業者選びに進みましょう。
+          {SITE_NAME}では、査定で見られるポイントや売り先3タイプの違いを個別ページで解説しています。流れがつかめたら、準備と業者選びに進んでください。
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <a href="/club-guide/" className="btn-green">クラブの売り方ガイド</a>
