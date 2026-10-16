@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!b) return {};
   return {
     title: `${b.name}の実売相場データ｜型番別の買取価格の目安【2026年9月】`,
-    description: `${b.name}のゴルフクラブがオークションで実際に売買された価格を集計。${b.rows.map((r) => r.category).join("・")}の落札件数・平均落札価格・単品最高値を出典と取得日つきで公開し、買取査定前の相場の物差しを提供します。`,
+    description: `${b.name}のゴルフクラブがオークションで実際に売買された価格を集計。${b.rows.map((r) => r.category).join("・")}の落札件数・平均落札価格・単品最高値を出典と取得日を併記して公開し、買取査定前の相場の物差しを提供します。`,
     alternates: { canonical: `${SITE_URL}/souba/${b.slug}/` },
   };
 }
@@ -51,7 +51,7 @@ export default async function SoubaMakerPage({ params }: { params: Promise<{ slu
           "@context": "https://schema.org",
           "@type": "Dataset",
           name: `${b.name}のゴルフクラブ実売相場データ`,
-          description: `${b.name}の中古ゴルフクラブがオークションで実際に売買された価格の集計（カテゴリ別${b.rows.length}件${b.models ? `・型番別${b.models.length}件` : ""}）。落札件数・平均落札価格・単品最高値を出典つきで掲載。`,
+          description: `${b.name}の中古ゴルフクラブがオークションで実際に売買された価格の集計（カテゴリ別${b.rows.length}件${b.models ? `・型番別${b.models.length}件` : ""}）。落札件数・平均落札価格・単品最高値を出典を併記して掲載。`,
           url: `${SITE_URL}/souba/${b.slug}/`,
           inLanguage: "ja",
           creator: { "@id": `${SITE_URL}/#organization` },

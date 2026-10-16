@@ -70,7 +70,7 @@ export default function HikakuPage() {
           </h1>
           <p className="mt-5 max-w-2xl text-[0.95rem] leading-loose text-ink-soft">
             ゴルフクラブ・ゴルフ用品の売り先は、「ゴルフ専門の買取業者」「総合リユース店」「複数社への一括査定」の3タイプに分かれます。
-            どれが一番良いかは品物と状況によって変わるため、まずタイプの違いを知り、1社に決め打ちせず相見積もりで比べるのが基本です。
+            どれが一番良いかは品物と状況によって変わるため、まずタイプの違いを知り、1社に限定せず、相見積もりで比較することをおすすめします。
           </p>
         </div>
       </section>
@@ -149,7 +149,7 @@ export default function HikakuPage() {
         <div className="notice-leather mt-8 max-w-3xl p-6">
           <p className="serif text-base text-ink">当サイトの業者別ページは現在整備中です</p>
           <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-            当サイトでは、掲載する業者の情報を公式サイトなどの一次情報で確認したうえで、確認日つきで掲載する方針です。
+            当サイトでは、掲載する業者の情報を公式サイトなどの一次情報で確認したうえで、確認日を明記して掲載する方針です。
             確認が完了していない段階で具体的な業者名を並べることはしません。業者別の詳細ページは、確認が済み次第このページから案内します。
             方針の詳細は<a href="/verification-policy/" className="font-bold text-green underline">情報の調査・検証ポリシー</a>をご覧ください。
           </p>

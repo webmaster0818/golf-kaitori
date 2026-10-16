@@ -38,7 +38,7 @@ export default function Footer() {
           <div>
             <p className="serif text-lg text-cream">{SITE_NAME}</p>
             <p className="mt-3 text-xs leading-relaxed text-cream/60">
-              ゴルフクラブ・用品の買取を、実売データと公式確認情報にもとづいて正直に比較する専門ガイドです。掲載情報には出典と確認日を付記します。
+              ゴルフクラブ・用品の買取を、実売データと公式サイトの記載にもとづいて比較する専門ガイドです。掲載情報には出典と確認日を付記します。
             </p>
           </div>
           {cols.map((c) => (

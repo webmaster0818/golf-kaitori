@@ -86,7 +86,7 @@ export default function AboutPage() {
             <li className="flex gap-3">
               <span className="text-green font-bold shrink-0">◆</span>
               <span>
-                <strong className="text-ink">値がつきにくいものは正直に記載：</strong>
+                <strong className="text-ink">値がつきにくいものはその旨を記載：</strong>
                 発売から年数が経ったモデルや状態の悪いクラブなど、高値がつきにくいものは「値がつきにくい」とはっきり記載します。売却をあおるための誇張はしません。
               </span>
             </li>
@@ -94,7 +94,7 @@ export default function AboutPage() {
               <span className="text-green font-bold shrink-0">◆</span>
               <span>
                 <strong className="text-ink">架空の口コミ・体験談ゼロ：</strong>
-                架空の口コミや体験談は一切作成しません。実在するソースが確認できない場合は「口コミが少ない」と正直に記載します。
+                架空の口コミや体験談は一切作成しません。実在するソースが確認できない場合は「口コミが少ない」と記載します。
               </span>
             </li>
           </ul>

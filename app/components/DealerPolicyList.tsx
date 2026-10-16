@@ -2,7 +2,7 @@ import { REVIEWS } from "../lib/reviews";
 
 /**
  * 業者検証レビュー(reviews.ts)の policy(古いクラブ・傷・セット等に関する公式記載の要約)を一覧化。
- * 記載のない業者は「記載を確認できず」と正直に表示。業者サイトへの外部リンクは設置しない。
+ * 記載のない業者は「記載を確認できず」と表示。業者サイトへの外部リンクは設置しない。
  */
 export default function DealerPolicyList({ intro }: { intro: string }) {
   const withPolicy = REVIEWS.filter((r) => r.policy);

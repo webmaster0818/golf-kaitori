@@ -7,7 +7,7 @@ import { GUIDE_LINKS } from "./lib/links";
 export const metadata: Metadata = {
   title: `${SITE_NAME}｜${SITE_TAGLINE}`,
   description:
-    "ゴルフクラブ・ゴルフ用品の買取業者を実売データと公式確認情報で正直に比較。メーカー×モデル×年式で決まるクラブ相場の考え方、高く売る準備、売り先3タイプの違いまで。",
+    "ゴルフクラブ・ゴルフ用品の買取業者を実売データと公式サイトの記載にもとづいて比較。メーカー×モデル×年式で決まるクラブ相場の考え方、高く売る準備、売り先3タイプの違いまで。",
   alternates: { canonical: `${SITE_URL}/` },
 };
 
@@ -28,7 +28,7 @@ const features = [
     href: "/hikaku/",
     tag: "COMPARE",
     title: "業者の選び方",
-    body: "売り先は「ゴルフ専門買取」「総合リユース」「一括査定」の3タイプ。1社決め打ちを避け、タイプの違いを知ってから相見積もりするのが失敗しないコツです。",
+    body: "売り先は「ゴルフ専門買取」「総合リユース」「一括査定」の3タイプ。1社に限定せず、タイプの違いを把握したうえで相見積もりを取ることをおすすめします。",
   },
 ];
 
@@ -40,13 +40,13 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-5 py-16 md:py-24">
           <p className="eyebrow mb-4">GOLF GEAR MARKET</p>
           <h1 className="serif text-3xl md:text-5xl leading-tight text-ink max-w-3xl">
-            そのクラブの価値を、
+            実売データにもとづく、
             <br />
-            実売データで確かめてから売る。
+            ゴルフクラブの買取ガイド
           </h1>
           <p className="mt-6 max-w-2xl text-[0.95rem] leading-relaxed text-ink-soft">
             {SITE_NAME}は、ゴルフクラブ・ゴルフ用品の買取を専門に扱う比較ガイドです。
-            掲載する業者情報は公式サイトで確認した内容のみを確認日つきで掲載し、広告報酬の有無は評価に影響させません。
+            掲載する業者情報は、公式サイトで確認した内容のみを、確認日を明記して掲載しています。広告報酬の有無は評価に影響させません。
             相場は「参考買取価格」ではなく、実際に売買が成立した価格にもとづいて公開する方針です。
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -100,7 +100,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-5 py-14">
           <h2 className="serif rule-green text-2xl text-ink">買取業者の検証レビュー（{REVIEWS.length}社）</h2>
           <p className="mt-4 max-w-3xl text-sm leading-relaxed text-ink-soft">
-            専門店・総合店の買取方法・費用・取扱区分・古物商許可を各社の公式サイトで一次確認し、確認できなかった項目も正直に記載しています。架空の口コミは掲載しません。
+            専門店・総合店の買取方法・費用・取扱区分・古物商許可を各社の公式サイトで一次確認し、確認できなかった項目はその旨を記載しています。架空の口コミは掲載しません。
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             {REVIEWS.map((r) => (
@@ -131,7 +131,7 @@ export default function HomePage() {
         <div className="notice-leather p-6">
           <p className="text-sm leading-relaxed text-ink-soft">
             <span className="font-bold text-ink">当サイトの方針: </span>
-            掲載する業者・相場の情報は、公式サイトなどの一次情報で確認できた内容のみを確認日つきで掲載します。広告（PR）を含みますが、報酬の有無は評価・掲載順に影響しません。
+            掲載する業者・相場の情報は、公式サイトなどの一次情報で確認できた内容のみを、確認日を明記して掲載しています。広告（PR）を含みますが、報酬の有無は評価・掲載順に影響しません。
             詳しくは<a href="/verification-policy/" className="font-bold text-green underline">情報の調査・検証ポリシー</a>をご覧ください。
           </p>
         </div>
