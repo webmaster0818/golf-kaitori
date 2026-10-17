@@ -48,9 +48,42 @@ export default async function ReviewDetailPage({
     ],
   };
 
+  // FAQ は公式確認済みの項目（policy / methods / fees / checkBefore）だけから組み立てる
+  const end = (t: string) => (/。$/.test(t) ? t : `${t}。`);
+  const faqs = [
+    {
+      q: `${r.name}で買取不可・減額になるのはどんな場合ですか？`,
+      a: r.policy
+        ? end(r.policy)
+        : "古いモデル・シャフト折れ・ヘッド単体・レフティ・レディースなどに関する条件は、公式サイト上で明確な記載を確認できませんでした。該当する品物を持ち込む場合は事前に店舗へ確認してください。",
+    },
+    {
+      q: `${r.name}の買取方法は何がありますか？`,
+      a: `公式サイトに明記があった買取方法は${r.methods.join("・")}です。${r.silos.clubs ? `クラブの買取について、公式サイトでは次のように案内されています。${end(r.silos.clubs)}` : ""}${(() => { const u = r.unconfirmed.filter((x) => /宅配|出張|ONLINE/.test(x)); return u.length ? `なお、次の点は公式サイトで確認できませんでした：${u.join("／")}。` : ""; })()}`,
+    },
+    {
+      q: `${r.name}の査定料・送料などの費用はかかりますか？`,
+      a: r.fees ? end(r.fees) : "査定料・送料などの条件は、公式サイト上で明確な記載を確認できませんでした。申込み前に公式サイトで確認してください。",
+    },
+    {
+      q: `${r.name}の評判を調べる前に確認しておきたいことは？`,
+      a: `${end(r.checkBefore)}（当サイトの公式サイト確認日: ${r.confirmedAt}）`,
+    },
+  ];
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <section className="border-b border-line bg-cream">
         <div className="mx-auto max-w-6xl px-5 pt-8 pb-12 md:pb-16">
@@ -221,6 +254,20 @@ export default async function ReviewDetailPage({
             </a>
           </div>
         )}
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 pb-12 md:pb-14">
+        <div className="max-w-3xl">
+          <h2 className="serif rule-green text-2xl text-ink">よくある質問</h2>
+          <dl className="mt-6 space-y-6">
+            {faqs.map((f) => (
+              <div key={f.q} className="border-b border-line pb-5">
+                <dt className="font-bold text-ink">Q. {f.q}</dt>
+                <dd className="mt-2 text-[0.92rem] leading-relaxed text-ink-soft">A. {f.a}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
       </section>
 
       <section className="border-t border-line bg-cream-deep">
