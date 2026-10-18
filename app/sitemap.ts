@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { execFileSync } from "node:child_process";
 import { SITE_URL } from "./lib/site";
 
 export const dynamic = "force-static";
@@ -39,10 +40,34 @@ const paths = [
   "/verification-policy/",
 ];
 
+// lastmod は「そのページの中身を作るファイル」の最終コミット日（ビルド時刻にしない）。
+// 未コミットの変更があるときだけ今日の日付にする。
+function sourcesFor(p: string): string[] {
+  if (p === "/") return ["app/page.tsx"];
+  if (p === "/souba/") return ["app/souba/page.tsx", "app/lib/souba.ts"];
+  if (p.startsWith("/souba/")) return ["app/souba/[slug]", "app/lib/souba.ts"];
+  if (p === "/reviews/") return ["app/reviews/page.tsx", "app/lib/reviews.ts"];
+  if (p.startsWith("/reviews/")) return ["app/reviews/[slug]", "app/lib/reviews.ts"];
+  if (p === "/guide/") return ["app/guide/page.tsx"];
+  if (p.startsWith("/guide/")) return [`app${p}`, "app/lib/reviews.ts"];
+  return [`app${p}`];
+}
+
+function lastModifiedFor(p: string): Date | undefined {
+  const files = sourcesFor(p);
+  try {
+    const dirty = execFileSync("git", ["status", "--porcelain", "--", ...files], { encoding: "utf8" }).trim();
+    if (dirty) return new Date();
+    const iso = execFileSync("git", ["log", "-1", "--format=%cI", "--", ...files], { encoding: "utf8" }).trim();
+    return iso ? new Date(iso) : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
   return paths.map((p) => ({
     url: `${SITE_URL}${p}`,
-    lastModified,
+    lastModified: lastModifiedFor(p),
   }));
 }
