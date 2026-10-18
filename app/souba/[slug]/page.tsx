@@ -22,8 +22,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const b = SOUBA.find((x) => x.slug === slug);
   if (!b) return {};
   return {
-    title: `${b.name}の実売相場データ｜型番別の買取価格の目安【2026年9月】`,
-    description: `${b.name}のゴルフクラブがオークションで実際に売買された価格を集計。${b.rows.map((r) => r.category).join("・")}の落札件数・平均落札価格・単品最高値を出典と取得日を併記して公開し、買取査定前の相場の物差しを提供します。`,
+    title: `${b.name}の買取相場｜型番別の買取価格の目安と落札実績【2026年9月取得】`,
+    description: `${b.name}の買取相場の目安として、ゴルフクラブがオークションで実際に売買された価格を集計。${b.rows.map((r) => r.category).join("・")}の落札件数・平均落札価格・単品最高値を出典と取得日を併記して公開し、買取査定前の相場の物差しを提供します。`,
     alternates: { canonical: `${SITE_URL}/souba/${b.slug}/` },
   };
 }
