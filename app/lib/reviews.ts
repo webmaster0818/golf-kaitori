@@ -21,6 +21,9 @@ export type Review = {
   checkBefore: string; // 査定前に確認しておきたい点(事実ベース)
   confirmedAt: string; // 確認日
   affiliateUrl: string | null; // 計測リンク(受領まで null = CTA非描画)
+  feesShort?: string; // 比較表用の短い要約（fees の公式記載から。新しい事実は足さない）
+  storesShort?: string; // 比較表用の短い要約（storesNote の公式記載から）
+  deliveryPaused?: string; // 宅配の新規受付を停止中の告知（facts の公式記載から。再開を確認したら消す）
   seoTitle?: string; // 検索語に合わせた title（本文にある事実のみ。無ければテンプレ）
   seoDesc?: string;
 };
@@ -36,6 +39,8 @@ const AT = "2026年9月22日";
 export const REVIEWS: Review[] = [
   {
     slug: "golf-partner",
+    feesShort: "オンライン買取は送料・返送・振込の費用なし",
+    storesShort: "全国300店舗以上",
     name: "ゴルフパートナー",
     company: "株式会社ゴルフパートナー",
     license: "東京都公安委員会許可番号第301089905447号",
@@ -57,6 +62,8 @@ export const REVIEWS: Review[] = [
   },
   {
     slug: "golf-do",
+    feesShort: "集荷・返送・振込の費用は会社負担",
+    storesShort: "69店舗（2026年5月31日現在）",
     name: "ゴルフドゥ",
     company: "株式会社ゴルフ・ドゥ",
     license: "埼玉県公安委員会 第431010007249号",
@@ -78,6 +85,8 @@ export const REVIEWS: Review[] = [
   },
   {
     slug: "gdo",
+    feesShort: "発送・返送料は無料（振込手数料の明記なし）",
+    storesShort: "店頭はゴルフガレージ5店舗",
     name: "GDOクラブ買取（ゴルフダイジェスト・オンライン）",
     company: "株式会社ゴルフダイジェスト・オンライン",
     license: "東京都公安委員会許可 NO.301080106283",
@@ -99,6 +108,8 @@ export const REVIEWS: Review[] = [
   },
   {
     slug: "golf5",
+    feesShort: "店頭は査定のみでも無料（振込手数料・返送料の明記なし）",
+    storesShort: "アルペングループ約400店舗（ゴルフ5単独の数は未記載）",
     name: "ゴルフ5（アルペン）",
     seoTitle: "ゴルフ5・アルペンのゴルフクラブ買取を公式情報で検証｜店頭買取・買取不可になる条件・評判の前に確認すること",
     company: "株式会社アルペン",
@@ -121,6 +132,8 @@ export const REVIEWS: Review[] = [
   },
   {
     slug: "golf-kids",
+    feesShort: "店頭は無料査定・査定後キャンセル可",
+    storesShort: "店舗数の数値は公式に記載なし",
     name: "ゴルフキッズ",
     seoTitle: "ゴルフキッズの買取を公式情報で検証｜店頭でその場で現金・壊れたクラブは買取不可・評判の前に確認すること",
     company: "株式会社GKファクトリー",
@@ -143,6 +156,8 @@ export const REVIEWS: Review[] = [
   },
   {
     slug: "niki-golf",
+    feesShort: "公式記載を確認できず",
+    storesShort: "46店舗（2020年9月現在）・現金買取は8店舗",
     name: "二木ゴルフ",
     company: "株式会社二木ゴルフ",
     license: "東京都公安委員会許可 第305549603569号",
@@ -166,6 +181,8 @@ export const REVIEWS: Review[] = [
   },
   {
     slug: "tsuruya",
+    feesShort: "公式記載を確認できず",
+    storesShort: "店舗情報ページに92店舗",
     name: "つるやゴルフ",
     company: "つるや株式会社",
     license: "大阪府公安委員会 621065300507",
@@ -189,6 +206,9 @@ export const REVIEWS: Review[] = [
   },
   {
     slug: "golf-ace",
+    deliveryPaused: "2026年10月29日確認：公式サイトのメンテナンス中で、新規の買取申し込みを停止中",
+    feesShort: "梱包材・送料・振込・返却・廃棄すべて無料",
+    storesShort: "実店舗なし（宅配のみ・全国）",
     name: "ゴルフエース（GOLF ACE）",
     company: "株式会社セカンドストリート（株式会社ゲオホールディングス グループ）",
     license: "古物商許可証 愛知県公安委員会許可 第541162001000号",
@@ -210,6 +230,9 @@ export const REVIEWS: Review[] = [
   },
   {
     slug: "2ndstreet",
+    deliveryPaused: "2026年10月29日確認：不正アクセス対応のメンテナンス中で、宅配買取の新規申し込みを停止中（店舗の買取は通常どおり）",
+    feesShort: "送料・梱包材・査定・振込・キャンセル時送料すべて無料",
+    storesShort: "全国900店舗以上（ゴルフの店頭買取は一部店舗）",
     name: "セカンドストリート",
     company: "株式会社セカンドストリート（英文表記：2nd STREET CORPORATION）",
     license: "愛知県公安委員会 541162001000 令和2年3月6日取得",
@@ -231,6 +254,8 @@ export const REVIEWS: Review[] = [
   },
   {
     slug: "hardoff",
+    feesShort: "宅配は手数料・送料0円（買取不可品の返送料は負担の場合あり）",
+    storesShort: "グループ1,111店舗（2026年10月21日時点）",
     name: "ハードオフ／オフハウス",
     company: "株式会社ハードオフコーポレーション",
     license: "新潟県公安委員会 許可番号 461060001043（株式会社ハードオフコーポレーション）",

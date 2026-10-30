@@ -24,7 +24,7 @@ export const REVIEW_LINKS = REVIEWS.map((r) => ({
 
 export const HUB_LINKS = {
   souba: { href: "/souba/", label: "実売相場データ一覧", note: "6メーカー・型番別データ" },
-  reviews: { href: "/reviews/", label: "買取業者の検証レビュー（10社）", note: "買取方法・費用・取扱を公式確認" },
+  reviews: { href: "/reviews/", label: "ゴルフクラブ買取10社の比較表", note: "買取方法・手数料・店舗数を公式確認" },
   hikaku: { href: "/hikaku/", label: "買取業者の選び方（3つの売り先）", note: "専門店・総合店・ネット" },
   clubGuide: { href: "/club-guide/", label: "ゴルフクラブの売り方ガイド", note: "査定で見られる点と準備" },
   guide: { href: "/guide/", label: "はじめての買取ガイド", note: "流れ・方法・トラブル回避" },

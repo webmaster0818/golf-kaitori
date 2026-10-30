@@ -109,7 +109,7 @@ export default function HomePage() {
               </a>
             ))}
           </div>
-          <a href="/reviews/" className="mt-5 inline-block text-sm font-bold text-green">区分別の明記状況を早見表で見る →</a>
+          <a href="/reviews/" className="mt-5 inline-block text-sm font-bold text-green">ゴルフクラブ買取はどこがいい？10社の比較表を見る →</a>
         </div>
       </section>
 
