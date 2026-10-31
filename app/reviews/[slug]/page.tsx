@@ -95,6 +95,17 @@ export default async function ReviewDetailPage({
           <p className="mt-5 max-w-2xl text-[0.95rem] leading-loose text-ink-soft">
             このページの情報は、{r.name}の公式サイトを当サイトが直接確認して整理したものです（確認日: {r.confirmedAt}）。伝聞や口コミサイトからの引用はしていません。「買取対象と公式に明記されているか」をジャンル別に切り分け、確認できなかった項目はその旨を記載します。
           </p>
+          {r.quickAnswer && (
+            <div className="mt-8 max-w-3xl card-club p-6">
+              <h2 className="serif text-xl text-ink">{r.name}のゴルフクラブ買取の要点</h2>
+              <ul className="mt-4 space-y-2">
+                {r.quickAnswer.map((q) => (
+                  <li key={q} className="text-[0.92rem] leading-relaxed text-ink-soft">・{q}</li>
+                ))}
+              </ul>
+              <p className="mt-4 text-xs text-ink-soft">公式サイトで確認（{r.confirmedAt}）。各項目の出典は下の表と「公式サイトで確認できた特徴」に記載しています。</p>
+            </div>
+          )}
         </div>
       </section>
 
