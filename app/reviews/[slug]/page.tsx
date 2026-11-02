@@ -93,7 +93,7 @@ export default async function ReviewDetailPage({
             {r.name}のゴルフクラブ買取を公式情報で検証
           </h1>
           <p className="mt-5 max-w-2xl text-[0.95rem] leading-loose text-ink-soft">
-            このページの情報は、{r.name}の公式サイトを当サイトが直接確認して整理したものです（確認日: {r.confirmedAt}）。伝聞や口コミサイトからの引用はしていません。「買取対象と公式に明記されているか」をジャンル別に切り分け、確認できなかった項目はその旨を記載します。
+            このページの情報は、{r.name}の公式サイトを当サイトが直接確認して整理したものです（確認日: {r.confirmedAt}）。伝聞や口コミサイトからの引用はしていません。評判・口コミそのものは掲載せず、公式サイトで確認できる条件だけを載せています。「買取対象と公式に明記されているか」をジャンル別に切り分け、確認できなかった項目はその旨を記載します。
           </p>
           {r.quickAnswer && (
             <div className="mt-8 max-w-3xl card-club p-6">
