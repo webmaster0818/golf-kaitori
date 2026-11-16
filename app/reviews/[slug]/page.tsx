@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SITE_URL } from "../../lib/site";
 import { REVIEWS, SILO_LABELS, type SiloKey } from "../../lib/reviews";
+import { HIKAKAKU, HIKAKAKU_NONE, HIKAKAKU_BASIS, HIKAKAKU_CHECKED_AT } from "../../lib/hikakaku";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import RelatedLinks from "../../components/RelatedLinks";
 import { GUIDE_LINKS, REVIEW_LINKS, HUB_LINKS } from "../../lib/links";
@@ -235,6 +236,66 @@ export default async function ReviewDetailPage({
               </div>
             )}
           </div>
+        </div>
+      </section>
+
+      {/* 口コミの掲載状況（第三者サイトの評点・2026-11-17） */}
+      <section className="mx-auto max-w-6xl px-5 pt-12 md:pt-14">
+        <div className="max-w-3xl">
+          <h2 className="serif rule-green text-2xl text-ink">口コミの掲載状況</h2>
+          {HIKAKAKU[r.slug] ? (
+            <>
+              <p className="mt-6 text-[0.9rem] leading-relaxed text-ink-soft mb-5">
+                第三者サイトに掲載されている評点を、確認日つきで掲載します（当サイト確認日: {HIKAKAKU_CHECKED_AT}）。
+                {HIKAKAKU_BASIS[r.slug]}
+              </p>
+              <div className="overflow-x-auto">
+                <table className="w-full text-[0.9rem]">
+                  <thead>
+                    <tr className="border-b border-line text-left text-ink">
+                      <th className="py-2 pr-4 font-bold">出典</th>
+                      <th className="py-2 pr-4 font-bold">対象</th>
+                      <th className="py-2 pr-4 font-bold">口コミの評価</th>
+                      <th className="py-2 pr-4 font-bold">口コミ件数</th>
+                      <th className="py-2 font-bold">出典ページの時点</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {HIKAKAKU[r.slug].map((h) => (
+                      <tr key={h.id} className="border-b border-line align-baseline">
+                        <td className="py-3 pr-4">
+                          <a
+                            href={`https://hikakaku.com/company/${h.id}/`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            ヒカカク！
+                          </a>
+                        </td>
+                        <td className="py-3 pr-4">{h.listing}</td>
+                        <td className="py-3 pr-4">{h.score} / 5</td>
+                        <td className="py-3 pr-4">{h.count.toLocaleString()}件</td>
+                        <td className="py-3">{h.pageAsOf}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-5 text-[0.85rem] leading-relaxed text-muted">
+                評点はヒカカク！の投稿者による評価で、当サイトの評価ではありません。買取価格そのものの高さを示すものでもありません。
+                {HIKAKAKU[r.slug].some((h) => h.count < 10) &&
+                  "口コミが10件未満のものは、評点を傾向として読めません。"}
+                {" "}
+                口コミの本文は著作権が投稿者にあるため、当サイトでは転載せず、評点・件数・出典リンクのみを掲載しています。出典のない口コミや、年代・地域を差し替えた体験談も作成しません。
+              </p>
+            </>
+          ) : (
+            <p className="mt-6 text-[0.9rem] leading-relaxed text-ink-soft">
+              {HIKAKAKU_NONE[r.slug] ?? "第三者サイトに評点の掲載を確認できませんでした。"}
+              {" "}
+              当サイトは出典のない口コミや、年代・地域を差し替えた体験談を作成しません。このページでは、公式サイトで一次確認できた買取方法・費用・古物商許可などの事実のみを、確認日つきで掲載しています（確認日: {r.confirmedAt}）。
+            </p>
+          )}
         </div>
       </section>
 

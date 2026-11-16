@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SITE_URL } from "../lib/site";
 import { REVIEWS, SILO_LABELS, type SiloKey } from "../lib/reviews";
+import { HIKAKAKU, HIKAKAKU_CHECKED_AT } from "../lib/hikakaku";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { JsonLd } from "../components/JsonLd";
 
@@ -140,6 +141,56 @@ export default function ReviewsPage() {
         </div>
         <p className="mt-6 max-w-3xl text-[0.82rem] leading-relaxed text-muted">
           専門店（ゴルフパートナー・ゴルフドゥなど）はゴルフ用品に絞った店舗、総合店はジャンルの違う品物をまとめて持ち込める店舗です。違いは<a href="/hikaku/" className="font-bold text-green underline">買取業者の選び方</a>で整理しています。
+        </p>
+      </section>
+
+      {/* 口コミの掲載状況（第三者サイトの評点一覧・2026-11-17） */}
+      <section className="mx-auto max-w-6xl px-5 pb-12 md:pb-14">
+        <h2 className="serif rule-green text-2xl text-ink">口コミの掲載状況</h2>
+        <p className="mt-6 max-w-3xl text-[0.9rem] leading-relaxed text-ink-soft">
+          当サイトは出典のない口コミや、年代・地域を差し替えた体験談を作成しません。第三者サイト（ヒカカク！）に評点の掲載があり、
+          かつ運営会社・古物商許可番号・公式サイトのリンク先で当サイト記載の運営会社と同一と確認できた
+          {Object.keys(HIKAKAKU).length}社について、評点と件数を確認日つきで掲載します（当サイト確認日: {HIKAKAKU_CHECKED_AT}）。
+          残り{REVIEWS.length - Object.keys(HIKAKAKU).length}社は、掲載がない・口コミ0件・運営会社の一致が確認できないなどの理由を各検証ページに記載しています。
+        </p>
+        <div className="mt-8 overflow-x-auto">
+          <table className="w-full text-[0.9rem]">
+            <thead>
+              <tr className="border-b border-line text-left text-ink">
+                <th className="py-2 pr-4 font-bold">当サイトの検証ページ</th>
+                <th className="py-2 pr-4 font-bold">出典（ヒカカク！）の対象</th>
+                <th className="py-2 pr-4 font-bold">口コミの評価</th>
+                <th className="py-2 font-bold">口コミ件数</th>
+              </tr>
+            </thead>
+            <tbody>
+              {REVIEWS.filter((r) => HIKAKAKU[r.slug]).flatMap((r) =>
+                HIKAKAKU[r.slug].map((h, i) => (
+                  <tr key={h.id} className="border-b border-line align-baseline">
+                    <td className="py-3 pr-4">
+                      {i === 0 ? <a href={`/reviews/${r.slug}/`}>{r.name}</a> : <span className="text-muted">同上</span>}
+                    </td>
+                    <td className="py-3 pr-4">
+                      <a href={`https://hikakaku.com/company/${h.id}/`} target="_blank" rel="noopener noreferrer">
+                        {h.listing}
+                      </a>
+                    </td>
+                    <td className="py-3 pr-4">{h.score} / 5</td>
+                    <td className="py-3">
+                      {h.count.toLocaleString()}件{h.count < 10 && "（10件未満）"}
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-5 max-w-3xl text-[0.85rem] leading-relaxed text-muted">
+          評点はヒカカク！の投稿者による評価で、当サイトの評価ではありません。買取価格そのものの高さを示すものでもありません。
+          件数には大きな差があるため（
+          {Math.min(...Object.values(HIKAKAKU).flat().map((h) => h.count))}件〜
+          {Math.max(...Object.values(HIKAKAKU).flat().map((h) => h.count)).toLocaleString()}件）、件数が少ない社の評点は傾向として読めません。
+          口コミの本文は著作権が投稿者にあるため転載せず、評点・件数・出典リンクのみを掲載しています。
         </p>
       </section>
 
