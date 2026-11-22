@@ -55,7 +55,7 @@ export default function SoubaPage() {
           </h1>
           <p className="mt-5 max-w-2xl text-[0.95rem] leading-loose text-ink-soft">
             買取業者の広告に載る「参考買取価格」は、条件のそろった上限例であることが多く、手元のクラブがその金額で売れるとは限りません。
-            当サイトは、参考価格ではなく<span className="font-bold text-ink">実際に売買が成立した価格のみ</span>を、出典・取得日付きで公開する方針です。
+            当サイトは、参考価格ではなく<span className="font-bold text-ink">オークションで売買が成立した落札価格だけ</span>を、出典・取得日付きで公開する方針です。
             このページでは、その計測方法と現在の整備状況を説明します。
           </p>
         </div>
